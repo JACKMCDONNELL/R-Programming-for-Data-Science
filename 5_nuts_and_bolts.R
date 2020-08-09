@@ -321,7 +321,7 @@ x / y
 ## true matrix multiplication
 x %*% y
 
-
+help(read.table)
 
 
 
