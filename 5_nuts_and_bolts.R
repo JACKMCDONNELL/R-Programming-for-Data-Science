@@ -112,4 +112,71 @@ colnames(m) <- c("h","f")
 rownames(m) <- c("x","z")
 m
 
+# reading in data
 
+data <- read.csv("/Users/johnmcdonnell/Dropbox/CWRU Biostats/Categorical Data Analysis/data/Chapter1/Aptima_combo.csv")
+# note that the generic read_table is what you would use for .txt files
+
+# data <- read.table("datatable.txt", nrows = 100)
+classes <- sapply(data, class)
+classes
+# tabAll <- read.table("datatable.txt", colClasses = classes)
+
+# using the readr package
+
+library(readr)
+aptima_combo <- read_csv("/Users/johnmcdonnell/Dropbox/CWRU Biostats/Categorical Data Analysis/data/Chapter1/Aptima_combo.csv")
+aptima_combo
+
+# note you can, and sometimes should, set the coltypes yourself
+# teams <- read_csv("data/team_standings.csv", col_types = "cc") 
+
+# readr can easily handle compressed files with no extra effort on the user's part
+
+# logs <- read_csv("data/2016-07-19.csv.bz2", n_max = 10)
+# or even better, to avoid difficulties in guessing the column classes
+# logs <- read_csv("data/2016-07-19.csv.bz2", col_types = "ccicccccci", n_max = 10)
+# logs
+
+# logdates <- read_csv("data/2016-07-19.csv.bz2",
+  #+ col_types = cols_only(date = col_date()),
+  #+ n_max = 10)
+
+# using textual and binary formats for storing data
+y <- data.frame(a = 1, b = "a")
+y
+dput(y)
+
+## Send 'dput' output to a file
+dput(y, file = "y.R")
+## Read in 'dput' output from a file
+new.y <- dget("y.R")
+
+
+x <- "foo"
+y <- data.frame(a = 1L, b = "a")
+dump(c("x", "y"), file = "data.R")
+rm(x,y)
+
+
+source("data.R")
+str(y)
+
+# binary formats
+a <- data.frame(x = rnorm(100), y = runif(100))
+b <- c(3, 4.4, 1 / 3)
+b
+
+save(a, b, file = "mydata.rda")
+load("mydata.rda")
+
+## Save everything to a file
+save.image(file = "mydata.RData")
+
+## load all objects in this file
+load("mydata.RData")
+
+x <- list(1, 2, 3)
+serialize(x, NULL)
+
+# connections with the outside world
