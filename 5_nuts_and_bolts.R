@@ -180,3 +180,152 @@ x <- list(1, 2, 3)
 serialize(x, NULL)
 
 # connections with the outside world
+
+str(file)
+
+## Create a connection to 'foo.txt'
+con <- file("foo.txt")
+
+## Open connection to 'foo.txt' in read-only mode
+open(con, "r")
+
+## Read from the connection
+data <- read.csv(con)
+
+## Close the connection
+close(con)
+
+# is all the same as this
+data <- read.csv("foo.txt")
+
+con <- gzfile("/Users/johnmcdonnell/Desktop/R Programming for Data Science/datasets/book_datasets/words.gz")
+x <- readLines(con, 10)
+
+## Open a URL connection for reading
+con <- url("http://www.bw.edu", "r")
+
+## Read the web page
+x <- readLines(con)
+
+## Print out the first few lines
+head(x)
+
+# subsetting
+x <- c("a", "b", "c", "c", "d", "a")
+x[1]
+x[2]
+x[1:4]
+x[c(1,3,4)]
+
+u <- x > "a"
+u
+x[u]
+
+x[x > "a"]
+
+
+x <- matrix(1:6, 2, 3)
+x
+x[1,2]
+x[2,1]
+
+x[1,]
+x[,2]
+
+x <- matrix(1:6, 2, 3)
+x[1,2]
+x[1,2, drop = FALSE]
+
+
+x[1,, drop = FALSE]
+
+# subsetting lists
+
+x <- list(foo = 1:4, bar = 0.6)
+x
+
+x[[1]]
+x[["bar"]]
+x$bar
+
+
+x <- list(foo = 1:4, bar = 0.6, baz = "hello")
+name <- "foo"
+
+# computed index for "foo"
+x[[name]]
+
+x$name
+
+x$foo
+
+x <- list(a = list(10, 12, 14), b = c(3.14, 2.81))
+x
+
+x[[c(1, 3)]]
+x[[1]][[3]]
+
+x[[c(2, 1)]]
+
+x <- list(foo = 1:4, bar = 0.6, baz = "hello")
+x[c(1, 3)]
+
+# partial matching
+x <- list(aardvark = 1:5)
+x$a
+x[["a"]]
+x[["a", exact = FALSE]]
+
+# removing NA values
+x <- c(1, 2, NA, 4, NA, 5)
+bad <- is.na(x)
+print(bad)
+x[!bad]
+
+
+x <- c(1, 2, NA, 4, NA, 5)
+y <- c("a", "b", NA, "d", NA, "f")
+good <- complete.cases(x, y)
+good
+
+x[good]
+y[good]
+
+# note, you can use complete.cases on data framew as well
+
+# vectorized operations
+x <- 1:4
+y <- 6:9
+z <- x + y
+
+x
+x > 2
+x >= 2
+x < 3
+y==8
+
+x-y
+x*y
+x/y
+
+x <- matrix(1:4, 2, 2)
+y <- matrix(rep(10, 4), 2, 2)
+
+
+## element-wise multiplication
+x * y
+
+## element-wise division
+x / y
+
+## true matrix multiplication
+x %*% y
+
+
+
+
+
+
+
+
+
