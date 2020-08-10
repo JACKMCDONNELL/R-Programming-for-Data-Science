@@ -324,8 +324,105 @@ x %*% y
 help(read.table)
 
 
+# Quiz
+
+#4
+
+x <- 4L
+class(x)
+
+#5
+
+x <- c(4, TRUE)
+class(x)
+
+#6
+
+x <- c(1, 3, 5)
+y <- c(3, 2, 10)
+cbind(x,y)
 
 
 
+#8
+
+x <- list(2, "a", "b", TRUE)
+x[[2]]
+
+#9 
+
+x <- 1:4
+y <- 2:3
+x + y
 
 
+#10
+
+x <- c(3, 5, 1, 10, 12, 6)
+x[x <= 5] <- 0
+x
+
+x <- c(3, 5, 1, 10, 12, 6)
+x[x<6] <- 0
+x
+
+x <- c(3, 5, 1, 10, 12, 6)
+x[x %in% 1:5] <- 0
+x
+
+rm(x,y)
+
+#11
+
+data <- readr::read_csv("/Users/johnmcdonnell/Desktop/R Programming for Data Science/datasets/hw1_data.csv")
+head(data)
+names(data)
+
+#12
+
+data[1:2,]
+
+#13
+
+nrow(data)
+
+#14
+
+tail(data)
+
+#15
+
+data$Ozone[47]
+
+#16 
+
+sum(is.na(data$Ozone))
+
+#17
+
+good <- complete.cases(data)
+complete_data <- data[good,]
+mean(complete_data$Ozone)
+rm(complete_data)
+
+#18
+
+extract <- data$Ozone >31 & data$Temp >90
+question18 <- data[extract,]
+complete_cases <- complete.cases(question18)
+question18 <- question18[complete_cases,]
+mean(question18$Solar.R)
+
+#19 
+
+extract <- data$Month==6
+question19 <- data[extract,]
+mean(question19$Temp)
+
+#20
+
+extract <- data$Month==5
+question20 <- data[extract,]
+complete_cases <- complete.cases(question20)
+question20<- question20[complete_cases,]
+max(question20$Ozone)
