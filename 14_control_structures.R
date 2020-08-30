@@ -47,3 +47,62 @@ for(i in seq_len(nrow(x))) {
       print(x[i, j])
     }
 }
+
+# WHILE LOOPS
+
+count <- 0
+
+while(count <10) {
+    print(count)
+    count <- count + 1
+}
+
+z <- 5
+set.seed(1)
+
+while(z >= 3 && z <= 10) {
+  coin <- rbinom(1, 1, 0.5)
+  
+  if(coin == 1) { ## random walk
+      z <- z + 1
+  } else {
+      z <- z - 1
+  }
+}
+
+print(z)
+
+# repeat loops
+
+x0 <- 1
+tol <- 1e-8
+
+repeat {
+  x1 <- computeEstimate()
+  
+  if(abs(x1 - x0) < tol) { ## Close enough?
+      break
+  } else {
+      x0 <- x1
+  }
+}
+
+# next/break
+
+for(i in 1:100) {
+  if(i <= 20) {
+      ## Skip the first 20 iterations
+      next
+  }
+  ## Do something here
+}
+
+for(i in 1:100) {
+  print(i)
+  
+  if(i > 20) {
+      ## Stop loop after 20 iterations
+      break
+  }
+}
+
