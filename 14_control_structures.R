@@ -156,3 +156,37 @@ x <- matrix(1:6, 2, 3)
 
 columnmean(x)
 
+f <- function(a, b=1, c=2, d=NULL){
+  
+}
+
+# lazy evaluation
+
+f <- function(a,b) {
+    a^2
+}
+f(2) # no error, because b is never used anyways
+
+f <- function(a, b) {
+    print(a)
+    print(b)
+}
+
+f(45)
+
+# ... (see text) 
+
+# scoping rules 
+
+search()
+
+# lexical scoping
+
+f <- function(x,y) {
+    x^2 + y / z # note that z does not have an assigned value - it is a free variable
+}
+
+# what value gets assigned to z?
+# depends on values in the parent environment. R just keeps going down sequence of parent environments
+# if can't find the value, throws an error
+f(2,5)
