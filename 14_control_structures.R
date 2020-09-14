@@ -230,3 +230,62 @@ x <- seq(1.7, 1.9, len = 100)
 ## Evaluate 'nLL()' at every point in 'x'
 y <- sapply(x, nLL)
 plot(x, exp(-(y - min(y))), type = "l")
+
+# dates and time
+
+# coerce date from a character
+
+x <- as.Date(("1970-01-01"))
+x
+
+unclass(x)
+unclass(as.Date("1970-01-02"))
+
+# coerce time
+
+x <- Sys.time()
+x
+class(x)
+
+p <- as.POSIXlt(x)
+names(unclass(p))
+p$sec
+
+x <- Sys.time()
+x ## already in POSIXct format
+unclass(x)
+
+x$sec # error because not POSIXlt
+p <- as.POSIXlt(x)
+p$sec
+
+# strptime function converts dates in other formats to POSIX
+
+datestring <- c("January 10, 2012 10:40", "December 9, 2011 9:10")
+
+x <- strptime(datestring, "%B %d, %Y %H:%M")
+x
+class(x)
+?strptime
+
+x <- as.Date("2012-01-01")
+y <- strptime("9 Jan 2011 11:34:21", "%d %b %Y %H:%M:%S")
+x-y
+
+x <- as.POSIXlt(x)
+x-y
+
+# keeps track of tricky things, like leap years
+x <- as.Date("2012-03-01")
+y <- as.Date("2012-02-28")
+x-y
+
+x <- as.POSIXct("2012-10-25 01:00:00")
+y <- as.POSIXct("2012-10-25 06:00:00", tz = "GMT")
+y-x
+
+
+
+
+
+
